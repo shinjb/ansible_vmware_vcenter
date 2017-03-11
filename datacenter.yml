@@ -1,11 +1,19 @@
-
 - hosts: localhost
   connection: local
+
+  vars: 
+   - vcenter:  item 
+  
+#  with_items:
+#   - item: "{{ asdf }}"
+
   tasks:
    - vmware_datacenter:
       hostname: 192.168.49.51
       username: administrator@vsphere.local
       password: Shinjb#826
-      datacenter_name: "datacenter_1"
+      datacenter_name: "{{ vcenter }}"
       state: present
       validate_certs: false
+
+
