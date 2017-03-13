@@ -11,8 +11,8 @@
       hostname: 192.168.49.51
       username: administrator@vsphere.local
       password: Shinjb#826
-      datacenter_name: "vcenter"
+      datacenter_name: "{{ item }}"
       state: present
       validate_certs: false
-
+     with_items: "{{ datacenter }}"
 
