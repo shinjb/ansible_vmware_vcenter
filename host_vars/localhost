@@ -1,3 +1,23 @@
 datacenter:
-  - 1234
-  - 23456
+  - ans_datacenter_1
+  - ans_datacenter_2
+
+cluster:
+  - {datacenter: "ans_datacenter_1" , cluster: "ans_mgmt"}
+  - {datacenter: "ans_datacenter_1" , cluster: "ans_compute"}
+  - {datacenter: "ans_datacenter_1" , cluster: "ans_edge"}
+
+
+hosts:
+  - {datacenter: "ans_datacenter_1" , cluster: "ans_mgmt" , esxi: 192.168.49.100 , username: "root", password: "tlswnsqja"}
+  - {datacenter: "ans_datacenter_1" , cluster: "ans_mgmt" , esxi: 192.168.49.101 , username: "root", password: "tlswnsqja"}
+  - {datacenter: "ans_datacenter_1" , cluster: "ans_mgmt" , esxi: 192.168.49.102 , username: "root", password: "tlswnsqja"}
+
+
+
+
+
+
+
+
+
