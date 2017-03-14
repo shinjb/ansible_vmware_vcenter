@@ -1,0 +1,20 @@
+- hosts: localhost
+  connection: local
+
+
+  tasks:
+   - vmware_host:
+      hostname: 192.168.49.51
+      username: administrator@vsphere.local
+      password: Shinjb#826
+      datacenter_name: "{{ item.datacenter }}"
+      cluster_name: "{{ item.cluster }}"
+      esxi_hostname: "{{ item.esxi }}"
+      esxi_username: "{{ item.username }}"
+      esxi_password: "{{ item.password }}"
+      state: present
+      validate_certs: false
+      
+     with_items: "{{ hosts }}"
+
+
