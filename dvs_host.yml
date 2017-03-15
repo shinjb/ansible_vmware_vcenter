@@ -1,0 +1,24 @@
+- hosts: localhost
+  connection: local
+
+
+  tasks:
+   - vmware_dvs_host:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      datacenter_name: "{{ item.datacenter }}"
+      switch_namee: "{{ item.switch }}"
+      esxi_hostname: "{{ item.esxi }}"
+      mtu: 9000
+      uplink_quantity: 4
+
+
+      esxi_username: "{{ item.username }}"
+      esxi_password: "{{ item.password }}"
+      state: present
+      validate_certs: false
+      
+     with_items: "{{ dvswitch}}"
+
+
