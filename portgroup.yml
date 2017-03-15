@@ -3,20 +3,21 @@
 
 
   tasks:
-   - vmware_dvswitch:
+   - vmware_dvs_portgroup:
       hostname: "{{ vcenter_hostname }}"
       username: "{{ vcenter_username }}"
       password: "{{ vcenter_password }}"
-      datacenter_name: "{{ item.datacenter }}"
+      portgroup_name: "{{ item.portgroup }}"
       switch_name: "{{ item.switch }}"
-      mtu: "{{ item.mtu }}"
-      uplink_quantity: "{{ item.uplink }}"
-      discovery_proto: "{{ item.proto }}"
-      discovery_operation: "{{ item.operation }}"
+      vlan_id: "{{ item.vlan }}"
+      num_ports: "{{ item.port }}"
+      portgroup_type: "{{ item.type }}"      
+
+
 
       state: present
       validate_certs: false
       
-     with_items: "{{ dvswitch }}"
+     with_items: "{{ portgroup }}"
 
 

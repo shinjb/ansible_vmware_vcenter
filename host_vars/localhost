@@ -23,10 +23,12 @@ hosts:
   - {datacenter: "ans_datacenter_1" , cluster: "ans_mgmt" , esxi: 192.168.49.101 , username: "root", password: "tlswnsqja"}
   - {datacenter: "ans_datacenter_1" , cluster: "ans_mgmt" , esxi: 192.168.49.102 , username: "root", password: "tlswnsqja"}
 
+dvswitch:
+  - {datacenter: "ans_datacenter_1" , switch: "ans_switch1" , mtu: "9000" , uplink: "4" , proto: lldp , operation: "both" } 
 
 
-
-
+portgroup:
+  - {portgroup: "ans_pg1" , switch: "ans_switch1" , vlan: "101" , port: "120" , type: "earlyBinding" }
 
 
 
