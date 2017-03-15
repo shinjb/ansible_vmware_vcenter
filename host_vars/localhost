@@ -2,6 +2,11 @@ vcenter_hostname: 192.168.49.51
 vcenter_username: administrator@vsphere.local
 vcenter_password: Shinjb#826
 
+esxi_username: root
+esxi_password: tlswnsqja
+
+
+
 
 datacenter:
   - ans_datacenter_1
