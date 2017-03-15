@@ -8,9 +8,9 @@
 
   tasks:
    - vmware_datacenter:
-      hostname: 192.168.49.51
-      username: administrator@vsphere.local
-      password: Shinjb#826
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
       datacenter_name: "{{ item }}"
       state: present
       validate_certs: false

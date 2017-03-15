@@ -1,3 +1,8 @@
+vcenter_hostname: 192.168.49.51
+vcenter_username: administrator@vsphere.local
+vcenter_password: Shinjb#826
+
+
 datacenter:
   - ans_datacenter_1
   - ans_datacenter_2
