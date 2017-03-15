@@ -7,18 +7,15 @@
       hostname: "{{ vcenter_hostname }}"
       username: "{{ vcenter_username }}"
       password: "{{ vcenter_password }}"
-      datacenter_name: "{{ item.datacenter }}"
-      switch_namee: "{{ item.switch }}"
-      esxi_hostname: "{{ item.esxi }}"
-      mtu: 9000
-      uplink_quantity: 4
+      esxi_hostname: "{{ item.host }}"
+      switch_name: "{{ item.switch }}"
+      vmnics:
+       - "{{ item.vnic1 }}"
+       - "{{ item.vnic2 }}"
 
-
-      esxi_username: "{{ item.username }}"
-      esxi_password: "{{ item.password }}"
       state: present
       validate_certs: false
       
-     with_items: "{{ dvswitch}}"
+     with_items: "{{ dvs_host }}"
 
 

@@ -1,0 +1,8 @@
+- include: datacenter.yml  
+- include: cluster.yml  
+- include: host.yml  
+- include: dvswitch.yml  
+- include: portgroup.yml
+- include: dvs_host.yml  
+
+
