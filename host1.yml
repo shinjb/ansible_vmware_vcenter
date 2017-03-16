@@ -1,0 +1,22 @@
+- hosts: localhost
+  connection: local
+
+
+  tasks:
+   - vmware_host:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"  
+      datacenter_name: "{{ item[0] }}"
+      cluster_name: "{{ item[1].cluster }}"
+      esxi_hostname: "{{ item[1].esxi }}"
+      esxi_username: "{{ esxi_username }}"
+      esxi_password: "{{ esxi_password }}"
+      state: present
+      validate_certs: false
+      
+     with_nested: 
+      - "{{ datacenter }}"
+      - "{{ hosts1 }}"
+
+
