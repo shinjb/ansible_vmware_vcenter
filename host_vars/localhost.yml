@@ -46,7 +46,13 @@ portgroup:
   - {portgroup: "ans_pg6" , switch: "ans_switch1" , vlan: "106" , port: "120" , type: "earlyBinding" }
 
 
-
+vmkernel:
+  - {host: 192.168.49.100 , ft: false , mgmt: false , vmotion: false, vsan: true , vlan: 101 , address: 10.10.101.100, mask: 255.255.255.0 }
+  - {host: 192.168.49.100 , ft: false , mgmt: false , vmotion: false, vsan: false , vlan: 102 , address: 10.10.102.100, mask: 255.255.255.0 }
+  - {host: 192.168.49.100 , ft: true , mgmt: false , vmotion: false, vsan: false , vlan: 103 , address: 10.10.103.100, mask: 255.255.255.0 }
+  - {host: 192.168.49.100 , ft: false , mgmt: false , vmotion: true, vsan: false , vlan: 104 , address: 10.10.104.100, mask: 255.255.255.0 }
+  - {host: 192.168.49.100 , ft: false , mgmt: false , vmotion: false, vsan: false , vlan: 105 , address: 10.10.105.100, mask: 255.255.255.0 }
+  - {host: 192.168.49.100 , ft: false , mgmt: false , vmotion: false, vsan: false , vlan: 106 , address: 10.10.106.100, mask: 255.255.255.0 }
 
 
 

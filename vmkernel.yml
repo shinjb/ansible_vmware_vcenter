@@ -1,0 +1,26 @@
+- hosts: localhost
+  connection: local
+
+
+  tasks:
+   - vmware_vmkernel:
+      hostname: "{{ item.host }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      vswitch_name: "vSwitch0"
+      portgroup_name: "VM network"
+      enable_mgmt: "{{ item.mgmt }}"
+      enable_ft: "{{ item.ft }}"
+      enable_vmotion: "{{ item.vmotion }}"
+      enable_vsan: "{{ item.vsan }}"
+      vlan_id: "{{ item.vlan }}"
+      ip_address: "{{ item.address }}"
+      subnet_mask: "{{ item.mask }}"
+
+
+
+      validate_certs: false
+      
+     with_items: "{{ vmkernel }}"
+
+
