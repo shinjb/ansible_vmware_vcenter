@@ -1,0 +1,195 @@
+vcenter_hostname: 192.168.49.61
+vcenter_username: administrator@vsphere.local
+vcenter_password: qkrrmsgP!@34
+
+esxi_username: root
+esxi_password: "qkrrmsgP!@34" 
+
+datacenter_name:
+  - "Datacenter"
+
+
+esxi_host:
+  - 192.168.49.111
+  - 192.168.49.112
+  - 192.168.49.113
+  - 192.168.49.114
+  - 192.168.49.115
+  - 192.168.49.116
+  - 192.168.49.117
+
+datacenter:
+  - "{{ datacenter_name }}"
+
+
+cluster:
+  - {datacenter: "Datacenter" , cluster: "01.EDGE"}
+  - {datacenter: "Datacenter" , cluster: "02.CN"}
+
+hosts:
+  - {cluster: "01.EDGE" , esxi: 192.168.49.111}
+  - {cluster: "01.EDGE" , esxi: 192.168.49.112}
+  - {cluster: "02.CN" , esxi: 192.168.49.113}
+  - {cluster: "02.CN" , esxi: 192.168.49.114}
+  - {cluster: "02.CN" , esxi: 192.168.49.115}
+  - {cluster: "02.CN" , esxi: 192.168.49.116}
+  - {cluster: "02.CN" , esxi: 192.168.49.117}
+
+dvswitch:
+  - {datacenter: "Datacenter" , switch: "VDS-CN-FE" , mtu: "9000" , uplink: "2" , proto: lldp , operation: "both" }
+  - {datacenter: "Datacenter" , switch: "VDS-CN-BE" , mtu: "9000" , uplink: "2" , proto: lldp , operation: "both" }
+  - {datacenter: "Datacenter" , switch: "VDS-EDGE-FE" , mtu: "9000" , uplink: "2" , proto: lldp , operation: "both" }
+  - {datacenter: "Datacenter" , switch: "VDS-EDGE-BE" , mtu: "9000" , uplink: "2" , proto: lldp , operation: "both" }
+
+
+
+
+dvs_host:
+  - { host: 192.168.49.111 , switch: "VDS-EDGE-BE" , vnic1: "vmnic2" , vnic2: "vmnic11" }
+  - { host: 192.168.49.112 , switch: "VDS-EDGE-BE" , vnic1: "vmnic2" , vnic2: "vmnic11" }
+  - { host: 192.168.49.113 , switch: "VDS-CN-BE" , vnic1: "vmnic2" , vnic2: "vmnic4" }
+  - { host: 192.168.49.114 , switch: "VDS-CN-BE" , vnic1: "vmnic2" , vnic2: "vmnic4" }
+  - { host: 192.168.49.115 , switch: "VDS-CN-BE" , vnic1: "vmnic2" , vnic2: "vmnic4" }
+  - { host: 192.168.49.116 , switch: "VDS-CN-BE" , vnic1: "vmnic2" , vnic2: "vmnic4" }
+  - { host: 192.168.49.117 , switch: "VDS-CN-BE" , vnic1: "vmnic2" , vnic2: "vmnic4" }
+
+dvs_host1:
+  - { host: 192.168.49.111 , switch: "VDS-EDGE-FE" , vnic1: "vmnic1" , vnic2: "vmnic4" }
+  - { host: 192.168.49.112 , switch: "VDS-EDGE-FE" , vnic1: "vmnic1" , vnic2: "vmnic4" }
+  - { host: 192.168.49.113 , switch: "VDS-CN-FE" , vnic1: "vmnic1" , vnic2: "vmnic4" }
+  - { host: 192.168.49.114 , switch: "VDS-CN-FE" , vnic1: "vmnic1" , vnic2: "vmnic4" }
+  - { host: 192.168.49.115 , switch: "VDS-CN-FE" , vnic1: "vmnic1" , vnic2: "vmnic4" }
+  - { host: 192.168.49.116 , switch: "VDS-CN-FE" , vnic1: "vmnic1" , vnic2: "vmnic4" }
+  - { host: 192.168.49.117 , switch: "VDS-CN-FE" , vnic1: "vmnic1" , vnic2: "vmnic4" }
+
+
+
+
+
+portgroup:
+  - {portgroup: "M-VSAN-V101-10.10.10.0" , switch: "VDS-EDGE-BE" , vlan: "101" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-EBS-V102-10.10.20.0" , switch: "VDS-EDGE-BE" , vlan: "102" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-VMO-V103-10.10.30.0" , switch: "VDS-EDGE-BE" , vlan: "103" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-FT-V104-10.10.40.0" , switch: "VDS-EDGE-BE" , vlan: "104" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-PROV-V105-10.10.50.0" , switch: "VDS-EDGE-BE" , vlan: "105" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-REPL-V106-10.10.60.0" , switch: "VDS-EDGE-BE" , vlan: "106" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "C-VSAN-V101-10.10.10.0" , switch: "VDS-CN-BE" , vlan: "101" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "C-EBS-V102-10.10.20.0" , switch: "VDS-CN-BE" , vlan: "102" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "C-VMO-V103-10.10.30.0" , switch: "VDS-CN-BE" , vlan: "103" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "C-FT-V104-10.10.40.0" , switch: "VDS-CN-BE" , vlan: "104" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "C-PROV-V105-10.10.50.0" , switch: "VDS-CN-BE" , vlan: "105" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "C-REPL-V106-10.10.60.0" , switch: "VDS-CN-BE" , vlan: "106" , port: "120" , type: "earlyBinding" }
+
+
+
+vmkernel1:
+  - {host: 192.168.49.111 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.101, mask: 255.255.254.0 }
+  - {host: 192.168.49.112 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.102, mask: 255.255.254.0 }
+  - {host: 192.168.49.113 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.103, mask: 255.255.254.0 }
+  - {host: 192.168.49.114 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.104, mask: 255.255.254.0 }
+  - {host: 192.168.49.115 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.105, mask: 255.255.254.0 }
+  - {host: 192.168.49.116 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.106, mask: 255.255.254.0 }
+  - {host: 192.168.49.117 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.107, mask: 255.255.254.0 }
+
+vmkernel2:
+  - {host: 192.168.49.111 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.101, mask: 255.255.254.0 }
+  - {host: 192.168.49.112 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.102, mask: 255.255.254.0 }
+  - {host: 192.168.49.113 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.103, mask: 255.255.254.0 }
+  - {host: 192.168.49.114 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.104, mask: 255.255.254.0 }
+  - {host: 192.168.49.115 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.105, mask: 255.255.254.0 }
+  - {host: 192.168.49.116 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.106, mask: 255.255.254.0 }
+  - {host: 192.168.49.117 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.107, mask: 255.255.254.0 }
+
+vmkernel3:
+  - {host: 192.168.49.111 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.101, mask: 255.255.254.0 }
+  - {host: 192.168.49.112 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.102, mask: 255.255.254.0 }
+  - {host: 192.168.49.113 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.103, mask: 255.255.254.0 }
+  - {host: 192.168.49.114 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.104, mask: 255.255.254.0 }
+  - {host: 192.168.49.115 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.105, mask: 255.255.254.0 }
+  - {host: 192.168.49.116 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.106, mask: 255.255.254.0 }
+  - {host: 192.168.49.117 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.107, mask: 255.255.254.0 }
+
+vmkernel4:
+  - {host: 192.168.49.111 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.101, mask: 255.255.254.0 }
+  - {host: 192.168.49.112 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.102, mask: 255.255.254.0 }
+  - {host: 192.168.49.113 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.103, mask: 255.255.254.0 }
+  - {host: 192.168.49.114 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.104, mask: 255.255.254.0 }
+  - {host: 192.168.49.115 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.105, mask: 255.255.254.0 }
+  - {host: 192.168.49.116 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.106, mask: 255.255.254.0 }
+  - {host: 192.168.49.117 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.107, mask: 255.255.254.0 }
+
+vmkernel5:
+  - {host: 192.168.49.111 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.101, mask: 255.255.254.0 }
+  - {host: 192.168.49.112 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.102, mask: 255.255.254.0 }
+  - {host: 192.168.49.113 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.103, mask: 255.255.254.0 }
+  - {host: 192.168.49.114 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.104, mask: 255.255.254.0 }
+  - {host: 192.168.49.115 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.105, mask: 255.255.254.0 }
+  - {host: 192.168.49.116 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.106, mask: 255.255.254.0 }
+  - {host: 192.168.49.117 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.107, mask: 255.255.254.0 }
+
+vmkernel6:
+  - {host: 192.168.49.111 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.101, mask: 255.255.254.0 }
+  - {host: 192.168.49.112 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.102, mask: 255.255.254.0 }
+  - {host: 192.168.49.113 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.103, mask: 255.255.254.0 }
+  - {host: 192.168.49.114 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.104, mask: 255.255.254.0 }
+  - {host: 192.168.49.115 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.105, mask: 255.255.254.0 }
+  - {host: 192.168.49.116 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.106, mask: 255.255.254.0 }
+  - {host: 192.168.49.117 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.107, mask: 255.255.254.0 }
+
+
+
+vmk1:
+  - { host: 192.168.49.111 , vmk: vmk1 , port: "VM network1" , switch: "VDS-EDGE-BE" , dport: "M-VSAN-V101-10.10.10.0" }
+  - { host: 192.168.49.112 , vmk: vmk1 , port: "VM network1" , switch: "VDS-EDGE-BE" , dport: "M-VSAN-V101-10.10.10.0" }
+  - { host: 192.168.49.113 , vmk: vmk1 , port: "VM network1" , switch: "VDS-CN-BE" , dport: "C-VSAN-V101-10.10.10.0" }
+  - { host: 192.168.49.114 , vmk: vmk1 , port: "VM network1" , switch: "VDS-CN-BE" , dport: "C-VSAN-V101-10.10.10.0" }
+  - { host: 192.168.49.115 , vmk: vmk1 , port: "VM network1" , switch: "VDS-CN-BE" , dport: "C-VSAN-V101-10.10.10.0" }
+  - { host: 192.168.49.116 , vmk: vmk1 , port: "VM network1" , switch: "VDS-CN-BE" , dport: "C-VSAN-V101-10.10.10.0" }
+  - { host: 192.168.49.117 , vmk: vmk1 , port: "VM network1" , switch: "VDS-CN-BE" , dport: "C-VSAN-V101-10.10.10.0" }
+
+vmk2:
+  - { host: 192.168.49.111 , vmk: vmk2 , port: "VM network2" , switch: "VDS-EDGE-BE" , dport: "M-EBS-V102-10.10.30.0" }
+  - { host: 192.168.49.112 , vmk: vmk2 , port: "VM network2" , switch: "VDS-EDGE-BE" , dport: "M-ESB-V102-10.10.30.0" }
+  - { host: 192.168.49.113 , vmk: vmk2 , port: "VM network2" , switch: "VDS-CN-BE" , dport: "C-EBS-V102-10.10.30.0" }
+  - { host: 192.168.49.114 , vmk: vmk2 , port: "VM network2" , switch: "VDS-CN-BE" , dport: "C-EBS-V102-10.10.30.0" }
+  - { host: 192.168.49.115 , vmk: vmk2 , port: "VM network2" , switch: "VDS-CN-BE" , dport: "C-EBS-V102-10.10.30.0" }
+  - { host: 192.168.49.116 , vmk: vmk2 , port: "VM network2" , switch: "VDS-CN-BE" , dport: "C-EBS-V102-10.10.30.0" }
+  - { host: 192.168.49.117 , vmk: vmk2 , port: "VM network2" , switch: "VDS-CN-BE" , dport: "C-EBS-V102-10.10.30.0" }
+ 
+vmk3:
+  - { host: 192.168.49.111 , vmk: vmk3 , port: "VM network3" , switch: "VDS-EDGE-BE" , dport: "M-VMO-V103-10.10.30.0" }
+  - { host: 192.168.49.112 , vmk: vmk3 , port: "VM network3" , switch: "VDS-EDGE-BE" , dport: "M-VMO-V103-10.10.30.0" }
+  - { host: 192.168.49.113 , vmk: vmk3 , port: "VM network3" , switch: "VDS-CN-BE" , dport: "C-VMO-V103-10.10.30.0" }
+  - { host: 192.168.49.114 , vmk: vmk3 , port: "VM network3" , switch: "VDS-CN-BE" , dport: "C-VMO-V103-10.10.30.0" }
+  - { host: 192.168.49.115 , vmk: vmk3 , port: "VM network3" , switch: "VDS-CN-BE" , dport: "C-VMO-V103-10.10.30.0" }
+  - { host: 192.168.49.116 , vmk: vmk3 , port: "VM network3" , switch: "VDS-CN-BE" , dport: "C-VMO-V103-10.10.30.0" }
+  - { host: 192.168.49.117 , vmk: vmk3 , port: "VM network3" , switch: "VDS-CN-BE" , dport: "C-VMO-V103-10.10.30.0" }
+
+ 
+vmk4:
+  - { host: 192.168.49.111 , vmk: vmk4 , port: "VM network4" , switch: "VDS-EDGE-BE" , dport: "M-FT-V104-10.10.40.0" }
+  - { host: 192.168.49.112 , vmk: vmk4 , port: "VM network4" , switch: "VDS-EDGE-BE" , dport: "M-FT-V104-10.10.40.0" }
+  - { host: 192.168.49.113 , vmk: vmk4 , port: "VM network4" , switch: "VDS-CN-BE" , dport: "C-FT-V104-10.10.40.0" }
+  - { host: 192.168.49.114 , vmk: vmk4 , port: "VM network4" , switch: "VDS-CN-BE" , dport: "C-FT-V104-10.10.40.0" }
+  - { host: 192.168.49.115 , vmk: vmk4 , port: "VM network4" , switch: "VDS-CN-BE" , dport: "C-FT-V104-10.10.40.0" }
+  - { host: 192.168.49.116 , vmk: vmk4 , port: "VM network4" , switch: "VDS-CN-BE" , dport: "C-FT-V104-10.10.40.0" }
+  - { host: 192.168.49.117 , vmk: vmk4 , port: "VM network4" , switch: "VDS-CN-BE" , dport: "C-FT-V104-10.10.40.0" }
+  
+vmk5:
+  - { host: 192.168.49.111 , vmk: vmk5 , port: "VM network5" , switch: "VDS-EDGE-BE" , dport: "M-PROV-V105-10.10.50.0" }
+  - { host: 192.168.49.112 , vmk: vmk5 , port: "VM network5" , switch: "VDS-EDGE-BE" , dport: "M-PROV-V105-10.10.50.0" }
+  - { host: 192.168.49.113 , vmk: vmk5 , port: "VM network5" , switch: "VDS-CN-BE" , dport: "C-PROV-V105-10.10.50.0" }
+  - { host: 192.168.49.114 , vmk: vmk5 , port: "VM network5" , switch: "VDS-CN-BE" , dport: "C-PROV-V105-10.10.50.0" }
+  - { host: 192.168.49.115 , vmk: vmk5 , port: "VM network5" , switch: "VDS-CN-BE" , dport: "C-PROV-V105-10.10.50.0" }
+  - { host: 192.168.49.116 , vmk: vmk5 , port: "VM network5" , switch: "VDS-CN-BE" , dport: "C-PROV-V105-10.10.50.0" }
+  - { host: 192.168.49.117 , vmk: vmk5 , port: "VM network5" , switch: "VDS-CN-BE" , dport: "C-PROV-V105-10.10.50.0" }
+
+vmk6:
+  - { host: 192.168.49.111 , vmk: vmk6 , port: "VM network6" , switch: "VDS-EDGE-BE" , dport: "M-REPL-V106-10.10.60.0" }
+  - { host: 192.168.49.112 , vmk: vmk6 , port: "VM network6" , switch: "VDS-EDGE-BE" , dport: "M-REPL-V106-10.10.60.0" }
+  - { host: 192.168.49.113 , vmk: vmk6 , port: "VM network6" , switch: "VDS-CN-BE" , dport: "C-REPL-V106-10.10.60.0" }
+  - { host: 192.168.49.114 , vmk: vmk6 , port: "VM network6" , switch: "VDS-CN-BE" , dport: "C-REPL-V106-10.10.60.0" }
+  - { host: 192.168.49.115 , vmk: vmk6 , port: "VM network6" , switch: "VDS-CN-BE" , dport: "C-REPL-V106-10.10.60.0" }
+  - { host: 192.168.49.116 , vmk: vmk6 , port: "VM network6" , switch: "VDS-CN-BE" , dport: "C-REPL-V106-10.10.60.0" }
+  - { host: 192.168.49.117 , vmk: vmk6 , port: "VM network6" , switch: "VDS-CN-BE" , dport: "C-REPL-V106-10.10.60.0" }
+  

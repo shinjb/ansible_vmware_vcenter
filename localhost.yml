@@ -1,0 +1,83 @@
+vcenter_hostname: 172.16.1.61
+vcenter_username: administrator@vsphere.local
+vcenter_password: Ko@laCloud1kake
+
+esxi_username: root
+esxi_password: Vmware1!
+
+datacenter_name:
+  - "Lab-DC"
+
+
+esxi_host:
+  - 172.16.1.101
+  - 172.16.1.102
+  - 172.16.1.103
+  - 172.16.1.104
+  - 172.16.1.105
+  - 172.16.1.106
+  - 172.16.1.107
+  - 172.16.1.108
+
+datacenter:
+  - "{{ datacenter_name }}"
+
+
+cluster:
+  - {datacenter: "{{ datacenter_name }}" , cluster: "01.MGMT"}
+  - {datacenter: "{{ datacenter_name }}" , cluster: "02.CN"}
+
+
+
+hosts:
+  - {datacenter: "ans_datacenter_1" , cluster: "ans_mgmt" , esxi: 192.168.49.102}
+
+hosts1:
+  - {cluster: "01.MGMT" , esxi: 172.16.1.101}
+  - {cluster: "01.MGMT" , esxi: 172.16.1.102}
+  - {cluster: "02.CN" , esxi: 172.16.1.103}
+  - {cluster: "02.CN" , esxi: 172.16.1.104}
+  - {cluster: "02.CN" , esxi: 172.16.1.105}
+  - {cluster: "02.CN" , esxi: 172.16.1.106}
+  - {cluster: "02.CN" , esxi: 172.16.1.107}
+  - {cluster: "02.CN" , esxi: 172.16.1.108}
+
+dvswitch:
+  - {datacenter: "{{ datacenter_name }}" , switch: "VDS-CN-FE" , mtu: "9000" , uplink: "4" , proto: lldp , operation: "both" }
+  - {datacenter: "{{ datacenter_name }}" , switch: "VDS-CN-BE" , mtu: "9000" , uplink: "4" , proto: lldp , operation: "both" }
+  - {datacenter: "{{ datacenter_name }}" , switch: "VDS-MGMT-BE" , mtu: "9000" , uplink: "4" , proto: lldp , operation: "both" }
+
+
+dvs_host:
+  - { host: 192.168.49.100 , switch: "ans_switch1" , vnic1: "vmnic1" , vnic2: "vmnic2" }
+
+
+portgroup:
+  - {portgroup: "M-VSAN-V101-10.10.10.0" , switch: "VDS-MGMT-BE" , vlan: "101" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-VSAN-V101-10.10.30.0" , switch: "VDS-MGMT-BE" , vlan: "103" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-VSAN-V101-10.10.40.0" , switch: "VDS-MGMT-BE" , vlan: "104" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-VSAN-V101-10.10.50.0" , switch: "VDS-MGMT-BE" , vlan: "105" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-VSAN-V101-10.10.60.0" , switch: "VDS-MGMT-BE" , vlan: "106" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-VSAN-V101-10.10.10.0" , switch: "VDS-CN-BE" , vlan: "101" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-VSAN-V101-10.10.30.0" , switch: "VDS-CN-BE" , vlan: "103" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-VSAN-V101-10.10.40.0" , switch: "VDS-CN-BE" , vlan: "104" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-VSAN-V101-10.10.50.0" , switch: "VDS-CN-BE" , vlan: "105" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-VSAN-V101-10.10.60.0" , switch: "VDS-CN-BE" , vlan: "106" , port: "120" , type: "earlyBinding" }
+
+
+
+vmkernel1:
+  - {host: 192.168.49.100 , ft: "False" , mgmt: "False" , vmotion: "False" , vsan: "True" , vlan: "101" , address: 10.10.101.100, mask: 255.255.255.0 }
+vmkernel2:
+  - {host: 192.168.49.100 , ft: false , mgmt: false , vmotion: false, vsan: false , vlan: 102 , address: 10.10.102.100, mask: 255.255.255.0 }
+vmkernel3:
+  - {host: 192.168.49.100 , ft: true , mgmt: false , vmotion: false, vsan: false , vlan: 103 , address: 10.10.103.100, mask: 255.255.255.0 }
+vmkernel4:
+  - {host: 192.168.49.100 , ft: false , mgmt: false , vmotion: true, vsan: false , vlan: 104 , address: 10.10.104.100, mask: 255.255.255.0 }
+vmkernel5:
+  - {host: 192.168.49.100 , ft: false , mgmt: false , vmotion: false, vsan: false , vlan: 105 , address: 10.10.105.100, mask: 255.255.255.0 }
+vmkernel6:
+  - {host: 192.168.49.100 , ft: false , mgmt: false , vmotion: false, vsan: false , vlan: 106 , address: 10.10.106.100, mask: 255.255.255.0 }
+
+
+

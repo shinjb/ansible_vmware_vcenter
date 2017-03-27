@@ -1,0 +1,209 @@
+vcenter_hostname: 172.16.1.61
+vcenter_username: administrator@vsphere.local
+vcenter_password: Ko@laCloud1kake
+
+esxi_username: root
+esxi_password: VMware1!
+
+datacenter_name:
+  - "Lab-DC"
+
+
+esxi_host:
+  - 172.16.1.101
+  - 172.16.1.102
+  - 172.16.1.103
+  - 172.16.1.104
+  - 172.16.1.105
+  - 172.16.1.106
+  - 172.16.1.107
+  - 172.16.1.108
+
+datacenter:
+  - "{{ datacenter_name }}"
+
+
+cluster:
+  - {datacenter: "{{ datacenter_name }}" , cluster: "01.MGMT"}
+  - {datacenter: "{{ datacenter_name }}" , cluster: "02.CN"}
+
+
+
+hosts:
+  - {datacenter: "ans_datacenter_1" , cluster: "ans_mgmt" , esxi: 192.168.49.102}
+
+hosts1:
+  - {cluster: "01.MGMT" , esxi: 172.16.1.101}
+  - {cluster: "01.MGMT" , esxi: 172.16.1.102}
+  - {cluster: "02.CN" , esxi: 172.16.1.103}
+  - {cluster: "02.CN" , esxi: 172.16.1.104}
+  - {cluster: "02.CN" , esxi: 172.16.1.105}
+  - {cluster: "02.CN" , esxi: 172.16.1.106}
+  - {cluster: "02.CN" , esxi: 172.16.1.107}
+  - {cluster: "02.CN" , esxi: 172.16.1.108}
+
+dvswitch:
+  - {datacenter: "{{ datacenter_name }}" , switch: "VDS-CN-FE" , mtu: "9000" , uplink: "2" , proto: lldp , operation: "both" }
+  - {datacenter: "{{ datacenter_name }}" , switch: "VDS-CN-BE" , mtu: "9000" , uplink: "2" , proto: lldp , operation: "both" }
+  - {datacenter: "{{ datacenter_name }}" , switch: "VDS-MGMT-BE" , mtu: "9000" , uplink: "2" , proto: lldp , operation: "both" }
+
+
+dvs_host:
+  - { host: vbmt-mn01.sam.sdscloud.co.kr , switch: "VDS-MGMT-BE" , vnic1: "vmnic10" , vnic2: "vmnic11" }
+  - { host: vbmt-mn02.sam.sdscloud.co.kr , switch: "VDS-MGMT-BE" , vnic1: "vmnic4" , vnic2: "vmnic11" }
+  - { host: vbmt-cn01.sam.sdscloud.co.kr , switch: "VDS-CN-BE" , vnic1: "vmnic6" , vnic2: "vmnic4" }
+  - { host: vbmt-cn02.sam.sdscloud.co.kr , switch: "VDS-CN-BE" , vnic1: "vmnic6" , vnic2: "vmnic4" }
+  - { host: vbmt-cn03.sam.sdscloud.co.kr , switch: "VDS-CN-BE" , vnic1: "vmnic6" , vnic2: "vmnic4" }
+  - { host: vbmt-cn04.sam.sdscloud.co.kr , switch: "VDS-CN-BE" , vnic1: "vmnic6" , vnic2: "vmnic4" }
+  - { host: vbmt-cn05.sam.sdscloud.co.kr , switch: "VDS-CN-BE" , vnic1: "vmnic6" , vnic2: "vmnic4" }
+  - { host: vbmt-cn06.sam.sdscloud.co.kr , switch: "VDS-CN-BE" , vnic1: "vmnic6" , vnic2: "vmnic4" }
+
+dvs_host1:
+  - { host: vbmt-cn01.sam.sdscloud.co.kr , switch: "VDS-CN-FE" , vnic1: "vmnic3" , vnic2: "vmnic4" }
+  - { host: vbmt-cn02.sam.sdscloud.co.kr , switch: "VDS-CN-FE" , vnic1: "vmnic3" , vnic2: "vmnic4" }
+  - { host: vbmt-cn03.sam.sdscloud.co.kr , switch: "VDS-CN-FE" , vnic1: "vmnic3" , vnic2: "vmnic4" }
+  - { host: vbmt-cn04.sam.sdscloud.co.kr , switch: "VDS-CN-FE" , vnic1: "vmnic3" , vnic2: "vmnic4" }
+  - { host: vbmt-cn05.sam.sdscloud.co.kr , switch: "VDS-CN-FE" , vnic1: "vmnic3" , vnic2: "vmnic4" }
+  - { host: vbmt-cn06.sam.sdscloud.co.kr , switch: "VDS-CN-FE" , vnic1: "vmnic3" , vnic2: "vmnic4" }
+
+
+
+
+
+portgroup:
+  - {portgroup: "M-VSAN-V101-10.10.10.0" , switch: "VDS-MGMT-BE" , vlan: "101" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-VMO-V103-10.10.30.0" , switch: "VDS-MGMT-BE" , vlan: "103" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-FT-V104-10.10.40.0" , switch: "VDS-MGMT-BE" , vlan: "104" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-PROV-V105-10.10.50.0" , switch: "VDS-MGMT-BE" , vlan: "105" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "M-REPL-V106-10.10.60.0" , switch: "VDS-MGMT-BE" , vlan: "106" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "C-VSAN-V101-10.10.10.0" , switch: "VDS-CN-BE" , vlan: "101" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "C-VMO-V103-10.10.30.0" , switch: "VDS-CN-BE" , vlan: "103" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "C-FT-V104-10.10.40.0" , switch: "VDS-CN-BE" , vlan: "104" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "C-PROV-V105-10.10.50.0" , switch: "VDS-CN-BE" , vlan: "105" , port: "120" , type: "earlyBinding" }
+  - {portgroup: "C-REPL-V106-10.10.60.0" , switch: "VDS-CN-BE" , vlan: "106" , port: "120" , type: "earlyBinding" }
+
+
+
+vmkernel1:
+  - {host: 172.16.1.101 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.101, mask: 255.255.254.0 }
+  - {host: 172.16.1.102 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.102, mask: 255.255.254.0 }
+  - {host: 172.16.1.103 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.103, mask: 255.255.254.0 }
+  - {host: 172.16.1.104 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.104, mask: 255.255.254.0 }
+  - {host: 172.16.1.105 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.105, mask: 255.255.254.0 }
+  - {host: 172.16.1.106 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.106, mask: 255.255.254.0 }
+  - {host: 172.16.1.107 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.107, mask: 255.255.254.0 }
+  - {host: 172.16.1.108 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "true" , vlan: "101" , address: 10.10.10.108, mask: 255.255.254.0 }
+
+
+
+
+
+vmkernel2:
+  - {host: 172.16.1.101 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.101, mask: 255.255.254.0 }
+  - {host: 172.16.1.102 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.102, mask: 255.255.254.0 }
+  - {host: 172.16.1.103 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.103, mask: 255.255.254.0 }
+  - {host: 172.16.1.104 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.104, mask: 255.255.254.0 }
+  - {host: 172.16.1.105 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.105, mask: 255.255.254.0 }
+  - {host: 172.16.1.106 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.106, mask: 255.255.254.0 }
+  - {host: 172.16.1.107 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.107, mask: 255.255.254.0 }
+  - {host: 172.16.1.108 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "102" , address: 10.10.20.108, mask: 255.255.254.0 }
+
+
+vmkernel3:
+  - {host: 172.16.1.101 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.101, mask: 255.255.254.0 }
+  - {host: 172.16.1.102 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.102, mask: 255.255.254.0 }
+  - {host: 172.16.1.103 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.103, mask: 255.255.254.0 }
+  - {host: 172.16.1.104 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.104, mask: 255.255.254.0 }
+  - {host: 172.16.1.105 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.105, mask: 255.255.254.0 }
+  - {host: 172.16.1.106 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.106, mask: 255.255.254.0 }
+  - {host: 172.16.1.107 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.107, mask: 255.255.254.0 }
+  - {host: 172.16.1.108 , ft: "false" , mgmt: "false" , vmotion: "true" , vsan: "false" , vlan: "103" , address: 10.10.30.108, mask: 255.255.254.0 }
+
+
+vmkernel4:
+  - {host: 172.16.1.101 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.101, mask: 255.255.254.0 }
+  - {host: 172.16.1.102 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.102, mask: 255.255.254.0 }
+  - {host: 172.16.1.103 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.103, mask: 255.255.254.0 }
+  - {host: 172.16.1.104 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.104, mask: 255.255.254.0 }
+  - {host: 172.16.1.105 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.105, mask: 255.255.254.0 }
+  - {host: 172.16.1.106 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.106, mask: 255.255.254.0 }
+  - {host: 172.16.1.107 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.107, mask: 255.255.254.0 }
+  - {host: 172.16.1.108 , ft: "true" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "104" , address: 10.10.40.108, mask: 255.255.254.0 }
+
+
+vmkernel5:
+  - {host: 172.16.1.101 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.101, mask: 255.255.254.0 }
+  - {host: 172.16.1.102 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.102, mask: 255.255.254.0 }
+  - {host: 172.16.1.103 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.103, mask: 255.255.254.0 }
+  - {host: 172.16.1.104 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.104, mask: 255.255.254.0 }
+  - {host: 172.16.1.105 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.105, mask: 255.255.254.0 }
+  - {host: 172.16.1.106 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.106, mask: 255.255.254.0 }
+  - {host: 172.16.1.107 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.107, mask: 255.255.254.0 }
+  - {host: 172.16.1.108 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "105" , address: 10.10.50.108, mask: 255.255.254.0 }
+
+
+vmkernel6:
+  - {host: 172.16.1.101 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.101, mask: 255.255.254.0 }
+  - {host: 172.16.1.102 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.102, mask: 255.255.254.0 }
+  - {host: 172.16.1.103 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.103, mask: 255.255.254.0 }
+  - {host: 172.16.1.104 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.104, mask: 255.255.254.0 }
+  - {host: 172.16.1.105 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.105, mask: 255.255.254.0 }
+  - {host: 172.16.1.106 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.106, mask: 255.255.254.0 }
+  - {host: 172.16.1.107 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.107, mask: 255.255.254.0 }
+  - {host: 172.16.1.108 , ft: "false" , mgmt: "false" , vmotion: "false" , vsan: "false" , vlan: "106" , address: 10.10.60.108, mask: 255.255.254.0 }
+
+
+
+vmk1:
+  - { host: vbmt-mn01.sam.sdscloud.co.kr , vmk: vmk1 , port: "VM network" , switch: "VDS-MGMT-BE" , dport: "M-VSAN-V101-10.10.10.0" }
+  - { host: vbmt-mn02.sam.sdscloud.co.kr , vmk: vmk1 , port: "VM network" , switch: "VDS-MGMT-BE" , dport: "M-VSAN-V101-10.10.10.0" }
+  - { host: vbmt-cn01.sam.sdscloud.co.kr , vmk: vmk1 , port: "VM network" , switch: "VDS-CN-BE" , dport: "C-VSAN-V101-10.10.10.0" }
+  - { host: vbmt-cn02.sam.sdscloud.co.kr , vmk: vmk1 , port: "VM network" , switch: "VDS-CN-BE" , dport: "C-VSAN-V101-10.10.10.0" }
+  - { host: vbmt-cn03.sam.sdscloud.co.kr , vmk: vmk1 , port: "VM network" , switch: "VDS-CN-BE" , dport: "C-VSAN-V101-10.10.10.0" }
+  - { host: vbmt-cn04.sam.sdscloud.co.kr , vmk: vmk1 , port: "VM network" , switch: "VDS-CN-BE" , dport: "C-VSAN-V101-10.10.10.0" }
+  - { host: vbmt-cn05.sam.sdscloud.co.kr , vmk: vmk1 , port: "VM network" , switch: "VDS-CN-BE" , dport: "C-VSAN-V101-10.10.10.0" }
+  - { host: vbmt-cn06.sam.sdscloud.co.kr , vmk: vmk1 , port: "VM network" , switch: "VDS-CN-BE" , dport: "C-VSAN-V101-10.10.10.0" }
+
+vmk2:
+  - { host: vbmt-mn01.sam.sdscloud.co.kr , vmk: vmk2 , port: "VM network3" , switch: "VDS-MGMT-BE" , dport: "M-VMO-V103-10.10.30.0" }
+  - { host: vbmt-mn02.sam.sdscloud.co.kr , vmk: vmk2 , port: "VM network3" , switch: "VDS-MGMT-BE" , dport: "M-VMO-V103-10.10.30.0" }
+  - { host: vbmt-cn01.sam.sdscloud.co.kr , vmk: vmk2 , port: "VM network3" , switch: "VDS-CN-BE" , dport: "C-VMO-V103-10.10.30.0" }
+  - { host: vbmt-cn02.sam.sdscloud.co.kr , vmk: vmk2 , port: "VM network3" , switch: "VDS-CN-BE" , dport: "C-VMO-V103-10.10.30.0" }
+  - { host: vbmt-cn03.sam.sdscloud.co.kr , vmk: vmk2 , port: "VM network3" , switch: "VDS-CN-BE" , dport: "C-VMO-V103-10.10.30.0" }
+  - { host: vbmt-cn04.sam.sdscloud.co.kr , vmk: vmk2 , port: "VM network3" , switch: "VDS-CN-BE" , dport: "C-VMO-V103-10.10.30.0" }
+  - { host: vbmt-cn05.sam.sdscloud.co.kr , vmk: vmk2 , port: "VM network3" , switch: "VDS-CN-BE" , dport: "C-VMO-V103-10.10.30.0" }
+  - { host: vbmt-cn06.sam.sdscloud.co.kr , vmk: vmk2 , port: "VM network3" , switch: "VDS-CN-BE" , dport: "C-VMO-V103-10.10.30.0" }
+  
+vmk3:
+  - { host: vbmt-mn01.sam.sdscloud.co.kr , vmk: vmk3 , port: "VM network4" , switch: "VDS-MGMT-BE" , dport: "M-FT-V104-10.10.40.0" }
+  - { host: vbmt-mn02.sam.sdscloud.co.kr , vmk: vmk3 , port: "VM network4" , switch: "VDS-MGMT-BE" , dport: "M-FT-V104-10.10.40.0" }
+  - { host: vbmt-cn01.sam.sdscloud.co.kr , vmk: vmk3 , port: "VM network4" , switch: "VDS-CN-BE" , dport: "C-FT-V104-10.10.40.0" }
+  - { host: vbmt-cn02.sam.sdscloud.co.kr , vmk: vmk3 , port: "VM network4" , switch: "VDS-CN-BE" , dport: "C-FT-V104-10.10.40.0" }
+  - { host: vbmt-cn03.sam.sdscloud.co.kr , vmk: vmk3 , port: "VM network4" , switch: "VDS-CN-BE" , dport: "C-FT-V104-10.10.40.0" }
+  - { host: vbmt-cn04.sam.sdscloud.co.kr , vmk: vmk3 , port: "VM network4" , switch: "VDS-CN-BE" , dport: "C-FT-V104-10.10.40.0" }
+  - { host: vbmt-cn05.sam.sdscloud.co.kr , vmk: vmk3 , port: "VM network4" , switch: "VDS-CN-BE" , dport: "C-FT-V104-10.10.40.0" }
+  - { host: vbmt-cn06.sam.sdscloud.co.kr , vmk: vmk3 , port: "VM network4" , switch: "VDS-CN-BE" , dport: "C-FT-V104-10.10.40.0" }
+  
+vmk4:
+  - { host: vbmt-mn01.sam.sdscloud.co.kr , vmk: vmk4 , port: "VM network5" , switch: "VDS-MGMT-BE" , dport: "M-PROV-V105-10.10.50.0" }
+  - { host: vbmt-mn02.sam.sdscloud.co.kr , vmk: vmk4 , port: "VM network5" , switch: "VDS-MGMT-BE" , dport: "M-PROV-V105-10.10.50.0" }
+  - { host: vbmt-cn01.sam.sdscloud.co.kr , vmk: vmk4 , port: "VM network5" , switch: "VDS-CN-BE" , dport: "C-PROV-V105-10.10.50.0" }
+  - { host: vbmt-cn02.sam.sdscloud.co.kr , vmk: vmk4 , port: "VM network5" , switch: "VDS-CN-BE" , dport: "C-PROV-V105-10.10.50.0" }
+  - { host: vbmt-cn03.sam.sdscloud.co.kr , vmk: vmk4 , port: "VM network5" , switch: "VDS-CN-BE" , dport: "C-PROV-V105-10.10.50.0" }
+  - { host: vbmt-cn04.sam.sdscloud.co.kr , vmk: vmk4 , port: "VM network5" , switch: "VDS-CN-BE" , dport: "C-PROV-V105-10.10.50.0" }
+  - { host: vbmt-cn05.sam.sdscloud.co.kr , vmk: vmk4 , port: "VM network5" , switch: "VDS-CN-BE" , dport: "C-PROV-V105-10.10.50.0" }
+  - { host: vbmt-cn06.sam.sdscloud.co.kr , vmk: vmk4 , port: "VM network5" , switch: "VDS-CN-BE" , dport: "C-PROV-V105-10.10.50.0" }
+
+vmk5:
+  - { host: vbmt-mn01.sam.sdscloud.co.kr , vmk: vmk5 , port: "VM network6" , switch: "VDS-MGMT-BE" , dport: "M-REPL-V106-10.10.60.0" }
+  - { host: vbmt-mn02.sam.sdscloud.co.kr , vmk: vmk5 , port: "VM network6" , switch: "VDS-MGMT-BE" , dport: "M-REPL-V106-10.10.60.0" }
+  - { host: vbmt-cn01.sam.sdscloud.co.kr , vmk: vmk5 , port: "VM network6" , switch: "VDS-CN-BE" , dport: "C-REPL-V106-10.10.60.0" }
+  - { host: vbmt-cn02.sam.sdscloud.co.kr , vmk: vmk5 , port: "VM network6" , switch: "VDS-CN-BE" , dport: "C-REPL-V106-10.10.60.0" }
+  - { host: vbmt-cn03.sam.sdscloud.co.kr , vmk: vmk5 , port: "VM network6" , switch: "VDS-CN-BE" , dport: "C-REPL-V106-10.10.60.0" }
+  - { host: vbmt-cn04.sam.sdscloud.co.kr , vmk: vmk5 , port: "VM network6" , switch: "VDS-CN-BE" , dport: "C-REPL-V106-10.10.60.0" }
+  - { host: vbmt-cn05.sam.sdscloud.co.kr , vmk: vmk5 , port: "VM network6" , switch: "VDS-CN-BE" , dport: "C-REPL-V106-10.10.60.0" }
+  - { host: vbmt-cn06.sam.sdscloud.co.kr , vmk: vmk5 , port: "VM network6" , switch: "VDS-CN-BE" , dport: "C-REPL-V106-10.10.60.0" }
+  
+  
+
+

@@ -1,0 +1,20 @@
+- hosts: localhost
+  connection: local
+
+
+  tasks:
+
+   - vmware_migrate_vmk:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      esxi_hostname: "{{ item.host }}"
+      device: "{{ item.vmk }}"
+      current_switch_name: "vSwitch0"
+      current_portgroup_name: "{{ item.port }}"
+      migrate_switch_name: "{{ item.switch }}"
+      migrate_portgroup_name: "{{ item.dport }}"
+      validate_certs: false
+     with_items: "{{ vmk2 }}"
+
+

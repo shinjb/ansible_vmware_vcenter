@@ -1,7 +1,5 @@
 - hosts: localhost
   connection: local
-
-
   tasks:
    - vmware_dvswitch:
       hostname: "{{ vcenter_hostname }}"
@@ -13,10 +11,8 @@
       uplink_quantity: "{{ item.uplink }}"
       discovery_proto: "{{ item.proto }}"
       discovery_operation: "{{ item.operation }}"
-
       state: present
       validate_certs: false
-      
      with_items: "{{ dvswitch }}"
 
 

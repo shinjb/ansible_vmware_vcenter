@@ -9,7 +9,7 @@
       username: "{{ esxi_username }}"
       password: "{{ esxi_password }}"
       vswitch_name: "vSwitch0"
-      portgroup_name: "VM Network"
+      portgroup_name: "VM network6"
       enable_mgmt: "{{ item.mgmt }}"
       enable_ft: "{{ item.ft }}"
       enable_vmotion: "{{ item.vmotion }}"
@@ -18,6 +18,6 @@
       ip_address: "{{ item.address }}"
       subnet_mask: "{{ item.mask }}"
       validate_certs: false
-     with_items: "{{ vmkernel1 }}"
+     with_items: "{{ vmkernel6 }}"
 
 

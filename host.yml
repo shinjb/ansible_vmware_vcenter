@@ -7,14 +7,16 @@
       hostname: "{{ vcenter_hostname }}"
       username: "{{ vcenter_username }}"
       password: "{{ vcenter_password }}"  
-      datacenter_name: "{{ item.datacenter }}"
-      cluster_name: "{{ item.cluster }}"
-      esxi_hostname: "{{ item.esxi }}"
+      datacenter_name: "{{ item[0] }}"
+      cluster_name: "{{ item[1].cluster }}"
+      esxi_hostname: "{{ item[1].esxi }}"
       esxi_username: "{{ esxi_username }}"
       esxi_password: "{{ esxi_password }}"
       state: present
       validate_certs: false
       
-     with_items: "{{ hosts }}"
+     with_nested: 
+      - "{{ datacenter }}"
+      - "{{ hosts }}"
 
 

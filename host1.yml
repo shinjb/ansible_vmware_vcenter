@@ -17,6 +17,6 @@
       
      with_nested: 
       - "{{ datacenter }}"
-      - "{{ hosts1 }}"
+      - "{{ hosts }}"
 
 
