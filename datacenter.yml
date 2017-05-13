@@ -1,10 +1,8 @@
 - hosts: localhost
   connection: local
 
-#  vars: 
-#   - vcenter: item.center
-#   - with_items:
-#     center: {{ asdf }}
+  include_vars:
+   file: localhost.yml
 
   tasks:
    - vmware_datacenter:
@@ -15,4 +13,3 @@
       state: present
       validate_certs: false
      with_items: "{{ datacenter }}"
-
