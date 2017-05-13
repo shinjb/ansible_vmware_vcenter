@@ -1,16 +1,22 @@
-vcenter_hostname: 172.16.1.61
+## vcenter account infomation
+
+vcenter_hostname: 172.16.1.51
 vcenter_username: administrator@vsphere.local
-vcenter_password: Ko@laCloud1kake
+vcenter_password: qkrrmsgP!@34
 
+
+## esxi account infomation
 esxi_username: root
-esxi_password: Vmware1!
+esxi_password: qkrrmsgP!@34
 
+
+## Datacenter Name
 datacenter_name:
   - "Lab-DC"
 
 
 esxi_host:
-  - 172.16.1.101
+  - 192.168.49.[111-117]
   - 172.16.1.102
   - 172.16.1.103
   - 172.16.1.104
@@ -78,6 +84,3 @@ vmkernel5:
   - {host: 192.168.49.100 , ft: false , mgmt: false , vmotion: false, vsan: false , vlan: 105 , address: 10.10.105.100, mask: 255.255.255.0 }
 vmkernel6:
   - {host: 192.168.49.100 , ft: false , mgmt: false , vmotion: false, vsan: false , vlan: 106 , address: 10.10.106.100, mask: 255.255.255.0 }
-
-
-

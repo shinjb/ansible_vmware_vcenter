@@ -1,0 +1,11 @@
+vcenter configuration
+
+vcenter configuration workflow
+
+1. make datacenter
+2. make cluster
+3. register hosts
+4. make dvswitch
+5. make vmkernel
+6. register host to dvswtich
+7. migration vmkernel
